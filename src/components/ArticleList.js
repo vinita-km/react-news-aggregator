@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { fetchArticles, fetchCategories, fetchSources } from '../services/ApiService';
 import ArticleCard from './common/ArticleCard';
 import SearchBar from './SearchBar';
-import { TextField, Grid, Stack, MenuItem, Select, Button, Typography } from '@mui/material';
+import {  Grid, Stack, MenuItem, Select, Typography } from '@mui/material';
 
 const ArticleList = () => {
     const [articles, setArticles] = useState([]);
@@ -55,10 +55,6 @@ const ArticleList = () => {
 
     const handleSearch = (e) => {
         setSearchKeyword(e.target.value);
-    };
-
-    const handleDateChange = (e) => {
-        setDateFilter(e.target.value);
     };
 
     const handleCategoryChange = (event) => {

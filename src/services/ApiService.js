@@ -19,7 +19,7 @@ export const fetchNYTArticles = async () => {
 
 export const fetchArticles = async (category) => {
   try {
-    const categoryParam = category ? `&category=${category}` : '';
+   
     const [newsApiArticles, nytArticles] = await Promise.all([
       fetchNewsArticles(category), // Fetch articles from News API
       fetchNYTArticles()   // Fetch articles from New York Times API

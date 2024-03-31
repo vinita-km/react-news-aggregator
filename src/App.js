@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'; 
 import ArticleList from './components/ArticleList';
 import PersonalizedNewsFeed from './components/PersonalizedNewsFeed';
 import { Tabs, Tab, Container, Typography, AppBar, Toolbar, ThemeProvider, createTheme } from '@mui/material';
