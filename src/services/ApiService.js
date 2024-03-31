@@ -19,7 +19,7 @@ export const fetchNYTArticles = async () => {
 
 export const fetchArticles = async (category) => {
   try {
-   
+
     const [newsApiArticles, nytArticles] = await Promise.all([
       fetchNewsArticles(category), // Fetch articles from News API
       fetchNYTArticles()   // Fetch articles from New York Times API
@@ -36,9 +36,9 @@ export const fetchArticles = async (category) => {
 };
 
 
-  
-  
-  
+
+
+
 export const fetchNewsArticles = async (category) => {
   try {
     const categoryParam = category ? `&category=${category}` : '';
@@ -74,51 +74,51 @@ export const fetchSources = async () => {
 };
 
 export const fetchCategories = async () => {
-    try {
-      const response = await fetch(`https://newsapi.org/v2/top-headlines/sources?apiKey=${API_KEY}`);
-      console.log(response, 'categories response')
-      const data = await response.json();
-  
-      if (response.ok) {
-        // Extract categories from the response data
-        const categories = data.sources.map(source => source.category).filter((category, index, self) => self.indexOf(category) === index);
-        console.log(categories, 'extracted categories');
-        return categories; // Return an array of unique categories
-      } else {
-        throw new Error(data.message || 'Failed to fetch categories');
-      }
-    } catch (error) {
-      console.error('Error fetching categories:', error.message);
-      throw error;
+  try {
+    const response = await fetch(`https://newsapi.org/v2/top-headlines/sources?apiKey=${API_KEY}`);
+    console.log(response, 'categories response')
+    const data = await response.json();
+
+    if (response.ok) {
+      // Extract categories from the response data
+      const categories = data.sources.map(source => source.category).filter((category, index, self) => self.indexOf(category) === index);
+      console.log(categories, 'extracted categories');
+      return categories; // Return an array of unique categories
+    } else {
+      throw new Error(data.message || 'Failed to fetch categories');
     }
-  };
-  
-  export const fetchPersonalizedNews = async (selectedSources, selectedCategories, selectedAuthors) => {
-    try {
-      // Implement logic to fetch personalized news based on selected preferences
-      // Example:
-      const response = await fetch(`https://example.com/api/personalized-news`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          sources: selectedSources,
-          categories: selectedCategories,
-          authors: selectedAuthors,
-          apiKey: API_KEY,
-        }),
-      });
-      const data = await response.json();
-  
-      if (response.ok) {
-        return data.articles;
-      } else {
-        throw new Error(data.message || 'Failed to fetch personalized news');
-      }
-    } catch (error) {
-      console.error('Error fetching personalized news:', error.message);
-      throw error;
+  } catch (error) {
+    console.error('Error fetching categories:', error.message);
+    throw error;
+  }
+};
+
+export const fetchPersonalizedNews = async (selectedSources, selectedCategories, selectedAuthors) => {
+  try {
+    // Implement logic to fetch personalized news based on selected preferences
+    // Example:
+    const response = await fetch(`https://example.com/api/personalized-news`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        sources: selectedSources,
+        categories: selectedCategories,
+        authors: selectedAuthors,
+        apiKey: API_KEY,
+      }),
+    });
+    const data = await response.json();
+
+    if (response.ok) {
+      return data.articles;
+    } else {
+      throw new Error(data.message || 'Failed to fetch personalized news');
     }
-  };
+  } catch (error) {
+    console.error('Error fetching personalized news:', error.message);
+    throw error;
+  }
+};
 
